@@ -1,0 +1,60 @@
+                        README
+
+
+Automação de teste da API "https://dummyjson.com" utilizando a linguagem Java, com Junit e rest-assured.
+
+Link do teste: https://sicredi-desafio-qe.readme.io/reference/home
+
+Cenarios de Teste:
+
+Cenario: Consultar o status da API
+Dado que desejo saber o status da aplicacao
+Quando consulto a aplicacao
+Então tenho o status code <200>
+
+Cenario: Consulta de usuarios
+Dado que desejo consultar um usuario
+Quando submeto os dados do usuario
+Então tenho o retorno do status code <200>
+
+Cenario: Gerar token de Autenticação
+Dado que desejo gerar um Token
+Quando submeto os dados do login
+Então tenho o token
+
+Cenario: Consultar Produtos com Autenticação e token válido
+Dado que desejo consultar um produto
+Quando submeto dos dados do produto
+Então tenho o retorno do status code <200>
+
+Cenario: Consultar Produtos com Autenticação e token inválido
+Dado que desejo consultar um produto
+Quando submeto dos dados do produto
+Então tenho o retorno do status code <401>
+
+Cenario: Cadastrar um Produto Valido
+Dado que desejo cadastrar um produto
+Quando submeto dos dados do produto
+Então tenho o retorno do status code <200>
+
+Cenario: Cadastrar um Produto com campo em branco
+Dado que desejo cadastrar um produto
+Quando submeto dos dados do produto
+Então tenho o retorno do status code <400>
+
+Cenario: Consultar um Produto
+Dado que desejo consultar um produto
+Quando submeto dos dados do produto
+Então tenho o retorno do status code <200>
+
+Cenario: Consultar um Produto pelo ID Valido
+Dado que desejo consultar um produto
+Quando submeto o ID <1>
+Então tenho o retorno do status code <200>
+
+Cenario: Consultar um produto pelo ID não cadastrado
+Dado que desejo consultar um produto
+Quando submeto o ID <1000>
+Então tenho o retorno do status code <404>
+
+
