@@ -1,9 +1,11 @@
                         README
 
 
-Automação de teste da API "https://dummyjson.com" utilizando a linguagem Java, com Junit e rest-assured.
+Automação de teste da API "https://dummyjson.com" utilizando a linguagem Java, TestNG e rest-assured.
 
 Link do teste: https://sicredi-desafio-qe.readme.io/reference/home
+
+Orientação para executar o projeto: rodar pelo testng.xml
 
 Cenarios de Teste:
 

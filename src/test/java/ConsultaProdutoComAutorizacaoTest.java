@@ -1,10 +1,8 @@
-package teste;
-
+import jdk.jfr.Description;
 import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.equalTo;
 
 public class ConsultaProdutoComAutorizacaoTest {
 
@@ -12,14 +10,15 @@ public class ConsultaProdutoComAutorizacaoTest {
 
     @Before
     public void setup() {
-        // Configure the base URI for accessing the API
+        // Configurar o caminho para acesso a API
         baseURI = "https://dummyjson.com";
         basePath = "/auth/login";
 
-        // Inform the login credentials in a JSON format
+        // nforme as credenciais de login em formato JSON
         String requestBody = "{\r\n    \"username\": \"kminchelle\",\r\n  " +
-                                    "  \"password\": \"0lelplR\"\r\n}";
+                "  \"password\": \"0lelplR\"\r\n}";
 
+        //Configurar a requisição da API
         String token = given()
                 .header("Content-Type", "application/json")
                 .body(requestBody)
@@ -27,20 +26,22 @@ public class ConsultaProdutoComAutorizacaoTest {
                 .post()
                 .then()
                 .log().all()
-                .statusCode(200) // Assuming 200 is the expected status code for a successful login
+                .statusCode(200)
                 .extract()
                 .path("data.token");
     }
 
     @Test
+    @Description("Realizar um login fornecendo um token, retorno esperado Status Code 200")
     public void testDadoDesejoGerarOTokenQuandoSubmetoLoginEntaoTenhoOToken(){
-        //configurar o caminho para acesso da minha api
+        //configurar o caminho para acesso da api
         baseURI = "https://dummyjson.com";
         basePath = "/auth/login";
 
         // Informe as credenciais de login em formato JSON
         String requestBody = "{\r\n    \"username\": \"kminchelle\",\r\n    \"password\": \"0lelplR\"\r\n}";
 
+        //Configurar a requisição da API
         String token = given()
                 .header("Content-Type", "application/json")
                 .body(requestBody)
@@ -48,7 +49,7 @@ public class ConsultaProdutoComAutorizacaoTest {
                 .post()
                 .then()
                 .log().all()
-                .statusCode(200) // Supondo que 200 seja o código de status esperado para um login bem-sucedido
+                .statusCode(200)
                 .extract()
                 .path("data.token");
 
@@ -57,12 +58,12 @@ public class ConsultaProdutoComAutorizacaoTest {
     }
 
     @Test
+    @Description("Realiza a consulta de um produto, passando um token válido, retorno esperado Status Code 200")
     public void testDadoDesejoConsultarUmProdutoQuandoSubmetoDadosProdutoEntaoRetornaStatusCode200(){
-        //configurar o caminho para acesso da minha api
-        baseURI = "https://dummyjson.com";
+        //configurar o caminho para acesso da api
         basePath = "auth/products";
 
-        //Informar dados do produto
+        //Configurar a requisição da API
         if (token != null) {
             given()
                     .header("Authorization", token)
@@ -77,13 +78,13 @@ public class ConsultaProdutoComAutorizacaoTest {
     }
 
     @Test
+    @Description("Realiza a consulta de um produto, passando um token inválido, retorno esperado Status Code 401")
     public void testDadoDesejoConsultarUmProdutoQuandoSubmetoDadosProdutoEntaoRetornaStatusCode401(){
-        //configurar o caminho para acesso da minha api
+        //configurar o caminho para acesso da api
         baseURI = "https://dummyjson.com";
         basePath = "auth/products";
 
-        //Informar dados do produto
-
+        //Configurar a requisição da API
         given()
                 .header("Authorization", token+1)
                 .header("Content-Type", "application/json")

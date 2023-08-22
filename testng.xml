@@ -1,0 +1,24 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<suite name = "Relatorio HTML-XML Suite">
+
+    <test name = "Relatorio HTML-XML test">
+        <classes>
+            <class name = "ConsultaProdutoComAutorizacaoTest" />
+            <class name = "ConsultaUsuarioTest" />
+            <class name = "CadastroConsultaProdutoSemAutorizacaoTest" />
+        </classes>
+    </test>
+
+    <target name="reports">
+        <junitreport todir="test-report">
+            <fileset dir="test-output">
+                <include name="*/*.xml"/>
+            </fileset>
+
+            <report format="noframes"  todir="test-report"/>
+        </junitreport>
+        <taskdef resource="testngtasks" classpath="testng.jar"/>
+    </target>
+
+</suite>
+
